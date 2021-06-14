@@ -7,6 +7,7 @@ import { useAppState, useDispatchAppState } from "./AppContext";
 
 import ProjList from "./ProjList";
 import Popover from "./Popover";
+import Button from "./Button";
 
 export default function Layout({ children }) {
   const [sortToggle, setSortToggle] = useState(false);
@@ -94,23 +95,34 @@ export default function Layout({ children }) {
           <Link href="/">
             <h1 className="title">Frederico Ramos Lopes</h1>
           </Link>
-        
-          <div className="blurb">
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Suscipit
-            debitis fugit minima mollitia inventore, maxime earum quia omnis
-            corporis accusantium quis laudantium iure obcaecati velit illum
-            cupiditate nemo iusto laboriosam sapiente sed eligendi.
+        </div>
+
+        <div className="blurb">
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Suscipit
+          debitis fugit minima mollitia inventore, maxime earum quia omnis
+          corporis accusantium quis laudantium iure obcaecati velit illum
+          cupiditate nemo iusto laboriosam sapiente sed eligendi.
+        </div>
+
+        {/* Buttons */}
+        <div className="proj-list-btns">
+          <div className="sort_btn">
+            <Button name="by date" onClickHandler={sortData} type="year" />
+            <Button name="by title" onClickHandler={sortData} type="title" />
+            <Button name="random" onClickHandler={sortData} type="random" />
+          </div>
+          <div className="filter_btn">
+            <Button name="all" onClickHandler={sortData} type="random" />
+            <Button name="azul" onClickHandler={sortData} type="random" />
+            <Button name="teatro" onClickHandler={sortData} type="random" />
           </div>
         </div>
-        
 
         {/* Errors */}
         {error && <div className="error">{error}</div>}
 
         {/* Projects */}
-        {appState.projs && (
-          <ProjList sorter={sortData} handleProjOpen={handleProjOpen} />
-        )}
+        {appState.projs && <ProjList handleProjOpen={handleProjOpen} />}
 
         {/* Popovers */}
         {appState.projs &&
